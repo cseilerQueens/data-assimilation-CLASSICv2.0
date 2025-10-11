@@ -16,11 +16,44 @@ system('cp /home/cseiler/CLASSICv2.0/classic/configurationFiles/default_run_para
 # Select parameters and obtain their parameter values
 parameterFile <- '/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/run_parameters.nml'
 
-parameterNames <- list("vmax", "kn", "thrprcnt", "alpha_phtsyn", "lfespany", "grescoef", 
-                       "avertmas", "mxrtdpth", "sn", "XLEAF", "maxage", "ZOLNG", 
-                       "coldthrs", "alpha", "gamma_w", "beta2", "kappa", "minslai", 
-                       "coldlmt", "roothrsh", "abar", "vpd0", "albnir", "TCSAND", 
-                       "TCCLAY", "ZOLNS", "minlvfr", "omega")
+parameterNames <- list(
+  "nresorp_coeff",
+  "c2n_lmax",
+  "c2n_lmin",
+  "c2n_smax",
+  "c2n_smin",
+  "c2n_rmax",
+  "c2n_rmin",
+  "alpha_vcmax",
+  "beta_vcmax",
+  "r_bnf_s",
+  "b_bnf",
+  "max_frac_bnf",
+  "coeff_a",
+  "bnfdpth",
+  "k_redcoeff_vcmax",
+  "r_bnf_f",
+  "c_cost_bnf_s",
+  "nvol_coeff",
+  "mu_nit",
+  "topt_nit",
+  "nitdenitdpth",
+  "mu_no_nit",
+  "mu_n2o_nit",
+  "mu_denit",
+  "topt_denit",
+  "mu_no_denit",
+  "mu_n2o_denit",
+  "denitswthrsh",
+  "ntolerance",
+  "nleach_coeff",
+  "coeff_p_nh4",
+  "coeff_p_no3",
+  "b_nh4",
+  "b_no3",
+  "kphalf",
+  "const_c2n_humus",
+  "ccost_coeff")
 
 parameterValues <- list()
 
@@ -104,10 +137,11 @@ names(lowerBound) <- NULL
 
 # (2) Convert the optimized normalized parameter values to actual parameter values and write them to a parameter file
 
-object <- readRDS("analysis/ALBS-GPP-HFLS-HFSS-LAI-TS-PAR28-GC160-P100-I1701/objectFinal.rds")
-normParameterValues <- object@solution
+object <- readRDS("simulations/daisyRun-opt-01/object-daisy-opt-01.rds")
+
+# normParameterValues <- object@solution
 # object <- readRDS("../data-assimilation-CLASSICv2.0/object.rds")
-# normParameterValues <- object@bestSol[[14]]
+normParameterValues <- object@bestSol[[24]]
 
 n <- length(parameterNames)
 

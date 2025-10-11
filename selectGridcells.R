@@ -162,7 +162,7 @@ my.xlim <- c(-180, 180)
 my.ylim <- c(-60, 85)
 my.projection <- "+proj=longlat +ellps=WGS84"
 shp.filename <- system.file("extdata/ne_110m_land/ne_110m_land.shp", package = "amber")
-land <- intFun.coast(my.xlim, my.ylim, my.projection, shp.filename)
+land <- amber::intFun.coast(my.xlim, my.ylim, my.projection, shp.filename)
 
 # Get high-resolution biome data:
 # Create an empty raster:

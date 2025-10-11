@@ -202,6 +202,7 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
   # fill the rest with a random population
   if(popSize > ng)
     { Pop[(ng+1):popSize,] <- population(object)[1:(popSize-ng),] }
+    Pop <- round(Pop, 3) # cseiler
   object@population <- Pop
   
       # If a previous object exists, read it in. - cseiler
@@ -380,6 +381,7 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
       system(paste("mv", popFile, genFolder))
 
       # update object
+      Pop <- round(Pop, 3) # cseiler
       object@population <- Pop
       object@fitness <- Fitness
       
@@ -434,6 +436,7 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
         object <- do.call(postFitness, c(object, callArgs))
         Fitness <- object@fitness
         Pop <- object@population
+        Pop <- round(Pop, 3) # cseiler
       }
 
       # update iterations summary
@@ -462,11 +465,13 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
           sel <- selection(object)
           # sel <- do.call(selection, c(object, callArgs))
           Pop <- sel$population
+          Pop <- round(Pop, 3) # cseiler
           Fitness <- sel$fitness
         }
       else
         { sel <- sample(1:popSize, size = popSize, replace = TRUE)
           Pop <- object@population[sel,]
+          Pop <- round(Pop, 3) # cseiler
           Fitness <- object@fitness[sel]
         }
       object@population <- Pop
@@ -485,7 +490,8 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
                    Pop[parents,] <- Crossover$children
                    Fitness[parents] <- Crossover$fitness
                  }
-             }             
+             }
+          Pop <- round(Pop, 3) # cseiler                
           object@population <- Pop
           object@fitness <- Fitness
       }
@@ -501,6 +507,7 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
                    Fitness[i] <- NA
                  }
              }
+          Pop <- round(Pop, 3) # cseiler
           object@population <- Pop
           object@fitness <- Fitness
         }
@@ -510,6 +517,7 @@ ga_daisy <- function(type = c("binary", "real-valued", "permutation"),
         { ord <- order(object@fitness, na.last = TRUE)
           u <- which(!duplicated(PopSorted, margin = 1))
           Pop[ord[1:elitism],] <- PopSorted[u[1:elitism],]
+          Pop <- round(Pop, 3) # cseiler
           Fitness[ord[1:elitism]] <- FitnessSorted[u[1:elitism]]
           object@population <- Pop
           object@fitness <- Fitness

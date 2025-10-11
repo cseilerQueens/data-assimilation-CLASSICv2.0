@@ -204,7 +204,8 @@ if [ $lastPart == TRUE ] && [ $Ncycle_on == .true. ]
 fi
 
 leap=.false.
-allLocalTime=.false.
+# allLocalTime=.false.
+allLocalTime=.true. # CSEILER
 transientPOPD=.false.
 
 domonthoutput=.false.
@@ -224,7 +225,8 @@ readMetEndYear=2022 # 2010 # 2001-2010 for tuning
 spinfast=1
 metLoop=1
 leap=.false.
-allLocalTime=.false.
+# allLocalTime=.false.
+allLocalTime=.true. # CSEILER
 transientPOPD=.true.
 
 domonthoutput=.true.

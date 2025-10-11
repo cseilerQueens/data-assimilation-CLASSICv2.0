@@ -28,7 +28,7 @@ setwd('/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2
 # This file will be overwritten with new values before CLASSIC is run
 
 # Number of nodes to run meta-jobs on.
-parallel <- 5 # 20
+parallel <- 20 # 20
 # Time for each meta-job.
 metajobTime <- "48:00:00"
 # The farm name.
@@ -328,7 +328,7 @@ ref.unit.conv.list <- list(
   1,1,
   1,
   1,
-  1/10000*365.25*86400,
+  1/(10000*365.25*86400),
   1,
   1)
 
@@ -437,10 +437,10 @@ result <- ga_daisy(
   #  crossover = selCroMut[2],
   #  mutation = selCroMut[3],
     
-    popSize = 10, # 100
+    popSize = 100, # 100
     elitism = 4, # 4,
-    maxiter = 5, # 25
-    run = 5, # 25
+    maxiter = 25, # 25
+    run = 25, # 25
     maxFitness = 1,
     parallel = parallel,
     jobTime = metajobTime,

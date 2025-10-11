@@ -15,13 +15,13 @@
 #-------------------------------------------------------
 
 # simulation ID
-simulationID="spinup_CRUJRAv2.4.5-part04-NCycle-coupled"
+simulationID="transient_CRUJRAv2.4.5-opt"
 
 # Meteorological forcing
 metForcing=CRUJRAv2.4.5 #CRUJRAv2.4.5 or ISIMIP3b.CanESM5
 
 # spinup or transient?
-simulationType=spinup # current options: spinup, transient, ssp585
+simulationType=transient # current options: spinup, transient, ssp585
 
 # Is this the last 100 years of the spinup with spinfast = 1?
 lastPart=FALSE # TRUE or FALSE
@@ -29,7 +29,9 @@ lastPart=FALSE # TRUE or FALSE
 # Restart file
 # init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part01-NCycle-decoupled/netcdf_files/rsFile_modified.nc'
 # init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part02-NCycle-coupled/netcdf_files/rsFile_modified.nc'
-init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part03-NCycle-coupled/netcdf_files/rsFile_modified.nc'
+# init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part03-NCycle-coupled/netcdf_files/rsFile_modified.nc'
+# init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part04-NCycle-coupled/netcdf_files/rsFile_modified.nc'
+init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part03-NCycle-coupled-opt/netcdf_files/rsFile_modified.nc'
 
 # For DRA cluster: Make sure that there are no NaN's in FLND, set them to zero.
 
@@ -205,7 +207,8 @@ if [ $lastPart == TRUE ] && [ $Ncycle_on == .true. ]
 fi
 
 leap=.false.
-allLocalTime=.false.
+# allLocalTime=.false.
+allLocalTime=.true. # CSEILER
 transientPOPD=.false.
 
 domonthoutput=.false.
@@ -225,7 +228,8 @@ readMetEndYear=2022
 spinfast=1
 metLoop=1
 leap=.false.
-allLocalTime=.false.
+# allLocalTime=.false.
+allLocalTime=.true. # CSEILER
 transientPOPD=.true.
 
 domonthoutput=.true.

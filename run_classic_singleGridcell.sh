@@ -15,19 +15,19 @@
 #-------------------------------------------------------
 
 # simulation ID
-simulationID="test02"
+simulationID="test-single-GC-localTRUE"
 
 # Meteorological forcing
 metForcing=CRUJRAv2.4.5 #CRUJRAv2.4.5 or ISIMIP3b.CanESM5
 
 # spinup or transient?
-simulationType=spinup # current options: spinup, transient, ssp585
+simulationType=transient # current options: spinup, transient, ssp585
 
 # Is this the last 100 years of the spinup with spinfast = 1?
 lastPart=FALSE # TRUE or FALSE
 
 # Restart file
-init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/classic_inputs/initfiles/global/T63/rsFile_CLASSICv2.0_Ncycle_T63.nc'
+init_file='/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/simulations/spinup_CRUJRAv2.4.5-part04-NCycle-coupled/netcdf_files/rsFile_modified.nc'
 
 # For DRA cluster: Make sure that there are no NaN's in FLND, set them to zero.
 
@@ -56,8 +56,8 @@ metDataDir="/home/cseiler/projects/def-cseiler-ab/cseiler/classic_inputs/meteoro
 
 if [ $spatialCoverage == local ]
 then
-lon=250
-lat=60
+lon=295
+lat=1
 fi
 
 #-------------------------------------------------------
@@ -223,7 +223,8 @@ readMetEndYear=2022
 spinfast=1
 metLoop=1
 leap=.false.
-allLocalTime=.false.
+# allLocalTime=.false.
+allLocalTime=.true. # CSEILER: Test
 transientPOPD=.true.
 
 domonthoutput=.true.
