@@ -28,7 +28,7 @@ setwd('/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2
 # This file will be overwritten with new values before CLASSIC is run
 
 # Number of nodes to run meta-jobs on.
-parallel <- 20 # 20
+parallel <- 5 # 20 cseiler-test
 # Time for each meta-job.
 metajobTime <- "48:00:00"
 # The farm name.
@@ -220,6 +220,17 @@ names(upper) <- NULL
 names(lower) <- NULL
 
 write.table(x = normParameterValues, file = "normParameterValues")
+
+columnNames <- rep(unlist(parameterNames), parameterValueLength)
+numberOfColumns <- sum(parameterValueLength) + 1
+daisyOutput <- as.data.frame(matrix(
+  ncol = numberOfColumns,
+  nrow = 0
+))
+colnames(daisyOutput) <- c("Score", columnNames)
+
+my.file <- file.path(dataAssimPath, "daisyOutput")
+write.table(x = daisyOutput, file = my.file, append = TRUE, row.names = FALSE, col.names = TRUE)
 
 run_classic_file <- "/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/run_classic.sh"
 # run_classic_file <- "/home/cseiler/projects/def-cseiler-ab/cseiler/data-assimilation-CLASSICv2.0/test.sh"
@@ -416,6 +427,9 @@ S5C5M2 <- c(selection[5], crossover[5], mutation[2])
 
 # selCroMut <- S5C1M2
 selCroMut <- S1C1M1
+
+nml <- TRUE
+
 result <- ga_daisy(
     type = "real-valued",
     fitness = cost.fun,
@@ -437,10 +451,10 @@ result <- ga_daisy(
   #  crossover = selCroMut[2],
   #  mutation = selCroMut[3],
     
-    popSize = 100, # 100
-    elitism = 4, # 4,
-    maxiter = 25, # 25
-    run = 25, # 25
+    popSize = 50, # 100 cseiler-test
+    elitism = 4, # 4, 
+    maxiter = 3, # 25 cseiler-test
+    run = 3, # 25 cseiler-test
     maxFitness = 1,
     parallel = parallel,
     jobTime = metajobTime,

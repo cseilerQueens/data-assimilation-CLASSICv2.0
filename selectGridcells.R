@@ -6,9 +6,9 @@ library(raster)
 rm(list=ls())
 
 # Number of grid cells to sample:
-nGridcells <- 160 # 80 # 60
-minFracArea <- 0.99
-my.seed <- 7 # 1 for 40 GCs during tests, 7 usually
+nGridcells <- 360 # 80 # 60
+minFracArea <- 0.90
+my.seed <- 1
 
 
 # Get WWF Biomes
